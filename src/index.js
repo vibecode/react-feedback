@@ -10,8 +10,15 @@ const store = configureStore()
 const rootElement = document.getElementById('root')
 
 function render(Component) {
-  ReactDOM.render(<Provider store={store}>{Component}</Provider>, rootElement)
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    rootElement
+  )
 }
+
+render(<App />)
 
 if (module.hot) {
   module.hot.accept('./App', () => {
