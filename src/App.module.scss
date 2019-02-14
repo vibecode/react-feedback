@@ -1,8 +1,42 @@
-.question_section {
+.container {
   height: 100vh;
+}
+
+.container::before {
+  content: '';
+  display: block;
+  height: calc(50% - 180px);
+}
+
+// .question_container {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   height: 150px;
+// }
+
+.question_section {
+  height: 360px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: lightgrey;
+  background-color: pink;
   border-bottom: 1px dotted black;
+  transition: background-color 0.4s ease-out;
+}
+
+.question_section_focused {
+  composes: question_section;
+  background-color: red;
+}
+
+.footer {
+  height: 65%;
+  background-color: pink;
+  transition: background-color 0.4s ease-out;
+}
+
+.footer_focused {
+  composes: footer;
+  background-color: red;
 }

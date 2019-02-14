@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Rating from './components/Rating'
+import { throttle } from 'lodash'
 import styles from './App.module.scss'
 
 class App extends Component {
@@ -10,29 +11,83 @@ class App extends Component {
     for (let ele of props.questions) {
       this[ele.id] = React.createRef()
     }
+    this.footer = React.createRef()
+    this.elems = props.questions
+      .map(quest => this[quest.id])
+      .concat(this.footer)
+
+    this.onScrollThrottled = throttle(this.onScroll, 100)
+
+    this.state = {
+      focusedId: ''
+    }
   }
 
-  scroll = () => {
-    window.scrollTo({
-      top: this['3'].current.offsetTop,
-      left: 100,
-      behavior: 'smooth'
+  componentDidMount() {
+    this.findFocused()
+    window.addEventListener('scroll', this.onScrollThrottled)
+  }
+
+  findFocused() {
+    const focused = this.elems.find(ref => {
+      const el = ref.current
+      const elTop = el.getBoundingClientRect().top
+      const elBottom = el.getBoundingClientRect().bottom
+      const centerWindow = document.documentElement.clientHeight / 2
+
+      return elTop < centerWindow && elBottom > centerWindow
     })
+
+    if (focused) {
+      this.setState({
+        focusedId: focused.current.id
+      })
+    } else {
+      this.setState({
+        focusedId: ''
+      })
+    }
+  }
+
+  onScroll = () => {
+    this.findFocused()
   }
 
   render() {
     const { questions } = this.props
 
     return (
-      <main>
-        <button onClick={this.scroll}>Scroll To 3</button>
-
-        {questions.map(({ id, type, total }) => (
-          <section className={styles.question_section} key={id} ref={this[id]}>
-            <Rating total={total} type={type} />
-          </section>
-        ))}
-      </main>
+      <div className={styles.container}>
+        <main className={styles.main}>
+          {questions.map(({ id, type, total }) => (
+            <div className={styles.question_container}>
+              <section
+                className={
+                  id !== this.state.focusedId
+                    ? styles.question_section
+                    : styles.question_section_focused
+                }
+                key={id}
+                ref={this[id]}
+                id={id}
+              >
+                <Rating total={total} type={type} />
+              </section>
+            </div>
+          ))}
+        </main>
+        <footer
+          className={
+            this.state.focusedId !== 'footer'
+              ? styles.footer
+              : styles.footer_focused
+          }
+          id="footer"
+          ref={this.footer}
+        >
+          All DONE
+        </footer>
+      </div>
     )
   }
 }
