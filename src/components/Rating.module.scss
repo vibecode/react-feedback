@@ -25,6 +25,11 @@
       transition: opacity 0.2s ease-out;
     }
   }
+
+  &:hover:not(.box_wrapper_active) :global .symbolFill {
+    display: block;
+    opacity: 0.2;
+  }
 }
 
 .box_wrapper_active {
@@ -56,11 +61,6 @@
       animation-duration: 0.5s;
     }
   }
-}
-
-.label:hover:not(.label_anim) :global .symbolFill {
-  display: block;
-  opacity: 0.2;
 }
 
 @keyframes flash {
