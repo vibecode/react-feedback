@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Rating from './components/Rating'
 import { throttle } from 'lodash'
 import styles from './App.module.scss'
+import ScrollPanel from './components/ScrollPanel'
 
 class App extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class App extends Component {
       const elBottom = el.getBoundingClientRect().bottom
       const centerWindow = document.documentElement.clientHeight / 2
 
-      return elTop < centerWindow && elBottom > centerWindow
+      return elTop <= centerWindow && elBottom >= centerWindow
     })
 
     if (focused) {
@@ -51,6 +52,27 @@ class App extends Component {
 
   onScroll = () => {
     this.findFocused()
+  }
+
+  scrollUp = () => {}
+
+  scrollDown = () => {
+    //check if we are already at the bottom
+    if (window.innerHeight + window.pageYOffset >= document.body.scrollHeight) {
+      return
+    }
+
+    const { focusedId } = this.state
+
+    const idx = this.elems.findIndex(ref => ref.current.id === focusedId) + 1
+
+    if (!idx || idx === this.elems.length) return
+
+    const centerWindow = document.documentElement.clientHeight / 2
+    const el = this.elems[idx].current
+    const y = el.offsetTop - centerWindow + el.offsetHeight / 2
+
+    window.scrollTo(0, y)
   }
 
   render() {
@@ -87,6 +109,7 @@ class App extends Component {
         >
           All DONE
         </footer>
+        <ScrollPanel handleDown={this.scrollDown} />
       </div>
     )
   }
