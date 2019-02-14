@@ -1,47 +1,44 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import Rating from './components/Rating'
+import styles from './App.module.scss'
 
-const data = ['one', 'two', 'three', 'four']
 class App extends Component {
   constructor(props) {
     super(props)
 
-    for (let ele of data) {
-      this[ele] = React.createRef()
-      console.log(ele)
+    for (let ele of props.questions) {
+      this[ele.id] = React.createRef()
     }
   }
 
   scroll = () => {
     window.scrollTo({
-      top: this.three.current.offsetTop,
+      top: this['3'].current.offsetTop,
       left: 100,
       behavior: 'smooth'
     })
   }
 
   render() {
+    const { questions } = this.props
+
     return (
       <main>
         <button onClick={this.scroll}>Scroll To 3</button>
-        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-          {data.map(el => (
-            <li
-              style={{
-                height: '100vh',
-                backgroundColor: `#${Math.floor(
-                  Math.random() * 16777215
-                ).toString(16)}`
-              }}
-              key={data}
-              ref={this[el]}
-            >
-              {el}
-            </li>
-          ))}
-        </ul>
+
+        {questions.map(({ id, type, total }) => (
+          <section className={styles.question_section} key={id} ref={this[id]}>
+            <Rating total={total} type={type} />
+          </section>
+        ))}
       </main>
     )
   }
 }
 
-export default App
+const mapStateToProps = state => ({
+  questions: state.questions
+})
+
+export default connect(mapStateToProps)(App)

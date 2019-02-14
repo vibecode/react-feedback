@@ -1,3 +1,6 @@
 import { combineReducers } from 'redux'
+import questions from './questions'
 
-export default combineReducers({ data: (state = {}) => state })
+export default combineReducers({
+  questions
+})

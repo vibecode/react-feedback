@@ -4,10 +4,13 @@
   "private": true,
   "dependencies": {
     "lodash": "^4.17.11",
+    "node-sass": "^4.11.0",
+    "prop-types": "^15.7.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "react-scripts": "2.1.3"
