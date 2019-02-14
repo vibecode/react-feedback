@@ -57,7 +57,7 @@ export class Rating extends PureComponent {
     const { type } = this.props
 
     return (
-      <form>
+      <form className={styles.rating_form}>
         {boxes.map(({ id, value, checked }) => (
           <div
             key={id}
