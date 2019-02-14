@@ -11,7 +11,7 @@ const initialState = [
   },
   {
     id: v4(),
-    type: 'BOWL',
+    type: 'STAR',
     text: 'Design of the site',
     answered: false,
     total: 5,
@@ -19,7 +19,39 @@ const initialState = [
   },
   {
     id: v4(),
-    type: 'BOWL',
+    type: 'PEN',
+    text: 'Design of the site',
+    answered: false,
+    total: 5,
+    recieved: 0
+  },
+  {
+    id: v4(),
+    type: 'LIGHTNING',
+    text: 'Design of the site',
+    answered: false,
+    total: 5,
+    recieved: 0
+  },
+  {
+    id: v4(),
+    type: 'HEART',
+    text: 'Design of the site',
+    answered: false,
+    total: 5,
+    recieved: 0
+  },
+  {
+    id: v4(),
+    type: 'THUMB',
+    text: 'Design of the site',
+    answered: false,
+    total: 5,
+    recieved: 0
+  },
+  {
+    id: v4(),
+    type: 'CHECK',
     text: 'Design of the site',
     answered: false,
     total: 5,
