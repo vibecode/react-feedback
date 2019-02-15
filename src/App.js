@@ -25,21 +25,27 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.findFocused()
+    this.setFocused()
     window.addEventListener('scroll', this.onScrollThrottled)
   }
 
-  //rename
-  findFocused() {
-    //check error after hot reloading
-    console.log(this.elems)
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScrollThrottled)
+  }
+
+  setFocused() {
     const focused = this.elems.find(ref => {
       const el = ref.current
-      const elTop = el.getBoundingClientRect().top
-      const elBottom = el.getBoundingClientRect().bottom
-      const centerWindow = document.documentElement.clientHeight / 2
 
-      return elTop <= centerWindow && elBottom >= centerWindow
+      if (el) {
+        const elTop = el.getBoundingClientRect().top
+        const elBottom = el.getBoundingClientRect().bottom
+        const centerWindow = document.documentElement.clientHeight / 2
+
+        return elTop <= centerWindow && elBottom >= centerWindow
+      } else {
+        return false
+      }
     })
 
     if (focused) {
@@ -54,14 +60,34 @@ class App extends Component {
   }
 
   onScroll = () => {
-    this.findFocused()
+    this.setFocused()
   }
 
-  scrollUp = () => {}
+  scrollUpToNext = () => {
+    //check if we are at the top
+    if (window.pageYOffset === 0) {
+      return
+    }
 
-  //rename scrollDownNext
-  scrollDown = () => {
-    //check if we are already at the bottom
+    const { focusedId } = this.state
+
+    const idx = this.elems.findIndex(ref => ref.current.id === focusedId) - 1
+
+    if (idx < 0) return
+
+    const centerWindow = document.documentElement.clientHeight / 2
+    const el = this.elems[idx].current
+    const top = el.offsetTop - centerWindow + el.offsetHeight / 2
+
+    window.scrollTo({
+      left: 0,
+      top,
+      behavior: 'smooth'
+    })
+  }
+
+  scrollDownToNext = () => {
+    //check if we are at the bottom
     if (window.innerHeight + window.pageYOffset >= document.body.scrollHeight) {
       return
     }
@@ -90,20 +116,18 @@ class App extends Component {
       <div className={styles.container}>
         <main className={styles.main}>
           {questions.map(({ id, type, total }) => (
-            <div className={styles.question_container}>
-              <section
-                className={
-                  id !== this.state.focusedId
-                    ? styles.question_section
-                    : styles.question_section_focused
-                }
-                key={id}
-                ref={this[id]}
-                id={id}
-              >
-                <Rating total={total} type={type} />
-              </section>
-            </div>
+            <section
+              className={
+                id !== this.state.focusedId
+                  ? styles.question_section
+                  : styles.question_section_focused
+              }
+              key={id}
+              ref={this[id]}
+              id={id}
+            >
+              <Rating total={total} type={type} submitRating={() => null} />
+            </section>
           ))}
         </main>
         <footer
@@ -117,7 +141,10 @@ class App extends Component {
         >
           All DONE
         </footer>
-        <ScrollPanel handleDown={this.scrollDown} />
+        <ScrollPanel
+          handleDown={this.scrollDownToNext}
+          handleUp={this.scrollUpToNext}
+        />
       </div>
     )
   }

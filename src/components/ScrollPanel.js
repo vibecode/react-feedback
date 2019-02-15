@@ -5,9 +5,7 @@ export class ScrollPanel extends PureComponent {
   render() {
     return (
       <div className={styles.container}>
-        <button active={false} onClick={this.props.handleUp}>
-          Up
-        </button>
+        <button onClick={this.props.handleUp}>Up</button>
         <button onClick={this.props.handleDown}>Down</button>
       </div>
     )
