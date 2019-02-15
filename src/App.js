@@ -66,6 +66,15 @@ class App extends Component {
   onScroll = () => {
     this.setFocused()
 
+    const { activeUp, activeDown } = this.state
+
+    if (!isUp() && !isDown() && (!activeUp || !activeDown)) {
+      this.setState({
+        activeUp: true,
+        activeDown: true
+      })
+    }
+
     if (isUp()) {
       this.setState({
         activeUp: false,
@@ -125,8 +134,16 @@ class App extends Component {
     })
   }
 
+  submitRating = answer => {
+    this.props.answer(answer)
+
+    if (answer.answered) {
+      setTimeout(() => this.scrollDownToNext(), 800)
+    }
+  }
+
   render() {
-    const { questions, progress, answer } = this.props
+    const { questions, progress } = this.props
     const { activeUp, activeDown } = this.state
 
     return (
@@ -143,7 +160,12 @@ class App extends Component {
               ref={this[id]}
               id={id}
             >
-              <Rating total={total} type={type} submitRating={answer} id={id} />
+              <Rating
+                total={total}
+                type={type}
+                submitRating={this.submitRating}
+                id={id}
+              />
             </section>
           ))}
         </main>
