@@ -5,7 +5,8 @@ import { throttle } from 'lodash'
 import styles from './App.module.scss'
 import ScrollPanel from './components/ScrollPanel'
 import { isUp, isDown } from './utils/utils'
-
+import { getProgress } from './reducers/questions'
+import { answer } from './actions'
 class App extends Component {
   constructor(props) {
     super(props)
@@ -125,7 +126,7 @@ class App extends Component {
   }
 
   render() {
-    const { questions } = this.props
+    const { questions, progress, answer } = this.props
     const { activeUp, activeDown } = this.state
 
     return (
@@ -142,7 +143,7 @@ class App extends Component {
               ref={this[id]}
               id={id}
             >
-              <Rating total={total} type={type} submitRating={() => null} />
+              <Rating total={total} type={type} submitRating={answer} id={id} />
             </section>
           ))}
         </main>
@@ -162,7 +163,7 @@ class App extends Component {
           activeDown={activeDown}
           handleDown={this.scrollDownToNext}
           handleUp={this.scrollUpToNext}
-          progress={10}
+          progress={progress}
         />
       </div>
     )
@@ -170,7 +171,11 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  questions: state.questions
+  questions: state.questions,
+  progress: getProgress(state)
 })
 
-export default connect(mapStateToProps)(App)
+export default connect(
+  mapStateToProps,
+  { answer }
+)(App)

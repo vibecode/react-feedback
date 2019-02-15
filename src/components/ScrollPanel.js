@@ -5,7 +5,14 @@ export class ScrollPanel extends PureComponent {
   render() {
     return (
       <div className={styles.container}>
-        <div className={styles.progress} />
+        <div className={styles.progress_container}>
+          <div
+            className={styles.progress_bar}
+            style={{
+              width: `${this.props.progress}%`
+            }}
+          />
+        </div>
         <div className={styles.buttons_container}>
           <button
             onClick={this.props.handleUp}

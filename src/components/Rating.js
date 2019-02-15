@@ -32,24 +32,44 @@ export class Rating extends PureComponent {
     const currentBox = boxes.find(box => box.value === value)
 
     if (currentBox.value === answerValue && currentBox.checked) {
-      this.setState({
-        boxes: boxes.map(box => ({
-          ...box,
-          checked: false
-        })),
-        answerValue: ''
-      })
+      this.setState(
+        {
+          boxes: boxes.map(box => ({
+            ...box,
+            checked: false
+          })),
+          answerValue: ''
+        },
+        () => {
+          this.props.submitRating({
+            rating: 0,
+            answered: false,
+            id: this.props.id
+          })
+        }
+      )
 
       return
     }
 
-    this.setState({
-      boxes: boxes.map(box => ({
-        ...box,
-        checked: box.value <= value
-      })),
-      answerValue: value
-    })
+    this.setState(
+      {
+        boxes: boxes.map(box => ({
+          ...box,
+          checked: box.value <= value
+        })),
+        answerValue: value
+      },
+      () => {
+        const { answerValue } = this.state
+
+        this.props.submitRating({
+          rating: Number(this.state.answerValue) || 0,
+          answered: true,
+          id: this.props.id
+        })
+      }
+    )
   }
 
   render() {

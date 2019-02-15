@@ -7,7 +7,7 @@ const initialState = [
     text: 'Design of the site',
     answered: false,
     total: 5,
-    recieved: 0
+    rating: 0
   },
   {
     id: v4(),
@@ -15,7 +15,7 @@ const initialState = [
     text: 'Design of the site',
     answered: false,
     total: 5,
-    recieved: 0
+    rating: 0
   },
   {
     id: v4(),
@@ -23,7 +23,7 @@ const initialState = [
     text: 'Design of the site',
     answered: false,
     total: 5,
-    recieved: 0
+    rating: 0
   },
   {
     id: v4(),
@@ -31,7 +31,7 @@ const initialState = [
     text: 'Design of the site',
     answered: false,
     total: 5,
-    recieved: 0
+    rating: ''
   },
   {
     id: v4(),
@@ -39,7 +39,7 @@ const initialState = [
     text: 'Design of the site',
     answered: false,
     total: 5,
-    recieved: 0
+    rating: 0
   },
   {
     id: v4(),
@@ -47,7 +47,7 @@ const initialState = [
     text: 'Design of the site',
     answered: false,
     total: 5,
-    recieved: 0
+    rating: 0
   },
   {
     id: v4(),
@@ -55,18 +55,33 @@ const initialState = [
     text: 'Design of the site',
     answered: false,
     total: 5,
-    recieved: 0
+    rating: 0
   }
 ]
 
 const questions = (state = initialState, { type, payload }) => {
   switch (type) {
-    case 'lol':
-      return state
+    case 'ANSWER':
+      const quest = state.find(quest => quest.id === payload.id)
 
+      if (!quest) throw new Error('unknown question id')
+
+      return state.map(quest => {
+        if (quest.id === payload.id) {
+          return { ...quest, ...payload }
+        } else {
+          return quest
+        }
+      })
     default:
       return state
   }
+}
+
+export const getProgress = state => {
+  const answered = state.questions.filter(quest => quest.answered)
+
+  return (100 / state.questions.length) * answered.length
 }
 
 export default questions

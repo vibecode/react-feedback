@@ -40,9 +40,14 @@
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-.progress {
+.progress_container {
   width: 60%;
-  height: 5px;
-  background: white;
+  border: 1px solid white;
   margin-left: 30px;
+}
+
+.progress_bar {
+  background: white;
+  height: 4px;
+  transition: width 0.7s ease-out;
 }
