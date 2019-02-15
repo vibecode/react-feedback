@@ -38,6 +38,10 @@
   composes: button;
   pointer-events: none;
   background-color: rgba(255, 255, 255, 0.3);
+
+  svg {
+    fill: rgba(255, 255, 255, 0.322);
+  }
 }
 
 .progress {

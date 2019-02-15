@@ -20,15 +20,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px dotted white;
-  border-top: 1px dotted white;
-  opacity: 0.2;
+  color: white;
+  opacity: 1;
   transition: opacity 0.4s ease-out;
+  //collapse border;
+  margin-top: -1px;
 }
 
 .question_section_focused {
   composes: question_section;
   opacity: 1;
+  border-bottom: 1px dotted white;
+  border-top: 1px dotted white;
 }
 
 .footer {
