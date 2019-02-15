@@ -20,23 +20,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: pink;
-  border-bottom: 1px dotted black;
-  transition: background-color 0.4s ease-out;
+  border-bottom: 1px dotted white;
+  border-top: 1px dotted white;
+  opacity: 0.2;
+  transition: opacity 0.4s ease-out;
 }
 
 .question_section_focused {
   composes: question_section;
-  background-color: red;
+  opacity: 1;
 }
 
 .footer {
   height: 65%;
-  background-color: pink;
-  transition: background-color 0.4s ease-out;
+  opacity: 0.2;
+  transition: opacity 0.4s ease-out;
 }
 
 .footer_focused {
   composes: footer;
-  background-color: red;
+  opacity: 1;
 }

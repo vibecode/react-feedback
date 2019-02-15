@@ -64,7 +64,7 @@ export class Rating extends PureComponent {
         const { answerValue } = this.state
 
         this.props.submitRating({
-          rating: Number(this.state.answerValue) || 0,
+          rating: Number(answerValue) || 0,
           answered: true,
           id: this.props.id
         })

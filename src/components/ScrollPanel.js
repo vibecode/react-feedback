@@ -5,13 +5,16 @@ export class ScrollPanel extends PureComponent {
   render() {
     return (
       <div className={styles.container}>
-        <div className={styles.progress_container}>
-          <div
-            className={styles.progress_bar}
-            style={{
-              width: `${this.props.progress}%`
-            }}
-          />
+        <div className={styles.progress}>
+          <p className={styles.title}>Your opinion matters.</p>
+          <div className={styles.progress_bar_container}>
+            <div
+              className={styles.progress_bar}
+              style={{
+                width: `${this.props.progress}%`
+              }}
+            />
+          </div>
         </div>
         <div className={styles.buttons_container}>
           <button

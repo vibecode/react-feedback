@@ -4,7 +4,6 @@ import Rating from './components/Rating'
 import { throttle } from 'lodash'
 import styles from './App.module.scss'
 import ScrollPanel from './components/ScrollPanel'
-import { isUp, isDown } from './utils/utils'
 import { getProgress } from './reducers/questions'
 import { answer } from './actions'
 class App extends Component {
@@ -31,6 +30,40 @@ class App extends Component {
   componentDidMount() {
     this.setFocused()
     window.addEventListener('scroll', this.onScrollThrottled)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { focusedId, activeDown, activeUp } = this.state
+
+    if (prevState.focusedId !== focusedId) {
+      const focusedIdx = this.elems.findIndex(
+        ref => ref.current.id === focusedId
+      )
+
+      if (focusedIdx === 0) {
+        this.setState({
+          activeUp: false,
+          activeDown: true
+        })
+
+        return
+      }
+
+      if (focusedIdx === this.elems.length - 1) {
+        this.setState({
+          activeUp: true,
+          activeDown: false
+        })
+
+        return
+      }
+
+      if (!activeDown || !activeUp)
+        this.setState({
+          activeUp: true,
+          activeDown: true
+        })
+    }
   }
 
   componentWillUnmount() {
@@ -65,36 +98,9 @@ class App extends Component {
 
   onScroll = () => {
     this.setFocused()
-
-    const { activeUp, activeDown } = this.state
-
-    if (!isUp() && !isDown() && (!activeUp || !activeDown)) {
-      this.setState({
-        activeUp: true,
-        activeDown: true
-      })
-    }
-
-    if (isUp()) {
-      this.setState({
-        activeUp: false,
-        activeDown: true
-      })
-    }
-
-    if (isDown()) {
-      this.setState({
-        activeDown: false,
-        activeUp: true
-      })
-    }
   }
 
   scrollUpToNext = () => {
-    if (isUp()) {
-      return
-    }
-
     const { focusedId } = this.state
 
     const idx = this.elems.findIndex(ref => ref.current.id === focusedId) - 1
@@ -103,6 +109,7 @@ class App extends Component {
 
     const centerWindow = document.documentElement.clientHeight / 2
     const el = this.elems[idx].current
+
     const top = el.offsetTop - centerWindow + el.offsetHeight / 2
 
     window.scrollTo({
@@ -113,10 +120,6 @@ class App extends Component {
   }
 
   scrollDownToNext = () => {
-    if (isDown()) {
-      return
-    }
-
     const { focusedId } = this.state
 
     const idx = this.elems.findIndex(ref => ref.current.id === focusedId) + 1
@@ -149,7 +152,7 @@ class App extends Component {
     return (
       <div className={styles.container}>
         <main className={styles.main}>
-          {questions.map(({ id, type, total }) => (
+          {questions.map(({ id, type, total, text }) => (
             <section
               className={
                 id !== this.state.focusedId
@@ -160,12 +163,15 @@ class App extends Component {
               ref={this[id]}
               id={id}
             >
-              <Rating
-                total={total}
-                type={type}
-                submitRating={this.submitRating}
-                id={id}
-              />
+              <div>
+                <h2 className={styles.text}>{text}</h2>
+                <Rating
+                  total={total}
+                  type={type}
+                  submitRating={this.submitRating}
+                  id={id}
+                />
+              </div>
             </section>
           ))}
         </main>
