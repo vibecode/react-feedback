@@ -4,6 +4,7 @@ import Rating from './components/Rating'
 import { throttle } from 'lodash'
 import styles from './App.module.scss'
 import ScrollPanel from './components/ScrollPanel'
+import { isUp, isDown } from './utils/utils'
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +21,9 @@ class App extends Component {
     this.onScrollThrottled = throttle(this.onScroll, 100)
 
     this.state = {
-      focusedId: ''
+      focusedId: '',
+      activeUp: false,
+      activeDown: true
     }
   }
 
@@ -61,11 +64,24 @@ class App extends Component {
 
   onScroll = () => {
     this.setFocused()
+
+    if (isUp()) {
+      this.setState({
+        activeUp: false,
+        activeDown: true
+      })
+    }
+
+    if (isDown()) {
+      this.setState({
+        activeDown: false,
+        activeUp: true
+      })
+    }
   }
 
   scrollUpToNext = () => {
-    //check if we are at the top
-    if (window.pageYOffset === 0) {
+    if (isUp()) {
       return
     }
 
@@ -87,8 +103,7 @@ class App extends Component {
   }
 
   scrollDownToNext = () => {
-    //check if we are at the bottom
-    if (window.innerHeight + window.pageYOffset >= document.body.scrollHeight) {
+    if (isDown()) {
       return
     }
 
@@ -111,6 +126,7 @@ class App extends Component {
 
   render() {
     const { questions } = this.props
+    const { activeUp, activeDown } = this.state
 
     return (
       <div className={styles.container}>
@@ -142,8 +158,11 @@ class App extends Component {
           All DONE
         </footer>
         <ScrollPanel
+          activeUp={activeUp}
+          activeDown={activeDown}
           handleDown={this.scrollDownToNext}
           handleUp={this.scrollUpToNext}
+          progress={10}
         />
       </div>
     )

@@ -1,10 +1,48 @@
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   position: fixed;
   bottom: 0;
-  height: 100px;
   width: 100%;
+  padding: 10px;
   background-color: rgba(128, 128, 128, 0.473);
+}
+
+.button {
+  position: relative;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  margin-right: 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 12px 0px;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  color: rgb(128, 128, 128);
+  transition: background-color 0.2s ease 0s, color 0.2s ease 0s,
+    border-color 0.2s ease 0s, opacity 0.2s ease 0s;
+  outline: none;
+  border-width: 1px;
+  border-style: solid;
+  border-image: initial;
+  padding: 0px;
+  border-color: transparent;
+  border-radius: 4px;
+}
+
+.button_disabled {
+  composes: button;
+  pointer-events: none;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.progress {
+  width: 60%;
+  height: 5px;
+  background: white;
+  margin-left: 30px;
 }
