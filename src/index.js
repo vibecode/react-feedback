@@ -6,6 +6,9 @@ import configureStore from './configureStore'
 import './index.css'
 import 'normalize.css'
 import * as serviceWorker from './serviceWorker'
+import smoothscroll from 'smoothscroll-polyfill'
+
+smoothscroll.polyfill()
 
 const store = configureStore()
 const rootElement = document.getElementById('root')

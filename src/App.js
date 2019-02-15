@@ -29,7 +29,10 @@ class App extends Component {
     window.addEventListener('scroll', this.onScrollThrottled)
   }
 
+  //rename
   findFocused() {
+    //check error after hot reloading
+    console.log(this.elems)
     const focused = this.elems.find(ref => {
       const el = ref.current
       const elTop = el.getBoundingClientRect().top
@@ -56,6 +59,7 @@ class App extends Component {
 
   scrollUp = () => {}
 
+  //rename scrollDownNext
   scrollDown = () => {
     //check if we are already at the bottom
     if (window.innerHeight + window.pageYOffset >= document.body.scrollHeight) {
@@ -70,9 +74,13 @@ class App extends Component {
 
     const centerWindow = document.documentElement.clientHeight / 2
     const el = this.elems[idx].current
-    const y = el.offsetTop - centerWindow + el.offsetHeight / 2
+    const top = el.offsetTop - centerWindow + el.offsetHeight / 2
 
-    window.scrollTo(0, y)
+    window.scrollTo({
+      left: 0,
+      top,
+      behavior: 'smooth'
+    })
   }
 
   render() {
