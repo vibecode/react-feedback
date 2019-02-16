@@ -1,22 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Rating from './components/Rating'
 import { throttle } from 'lodash'
 import styles from './App.module.scss'
 import ScrollPanel from './components/ScrollPanel'
 import { getProgress } from './reducers/questions'
 import { answer } from './actions'
+import Question from './components/Question'
+import { getAllSubQuests } from './reducers/questions'
 class App extends Component {
   constructor(props) {
     super(props)
 
-    for (let ele of props.questions) {
-      this[ele.id] = React.createRef()
+    this.refsDic = {
+      footer: React.createRef()
     }
-    this.footer = React.createRef()
-    this.elems = props.questions
-      .map(quest => this[quest.id])
-      .concat(this.footer)
+
+    for (let el of props.subQuests) {
+      this.refsDic[el.id] = React.createRef()
+    }
+
+    this.refsArray = props.subQuests
+      .map(quest => this.refsDic[quest.id])
+      .concat(this.refsDic.footer)
 
     this.onScrollThrottled = throttle(this.onScroll, 100)
 
@@ -36,7 +41,7 @@ class App extends Component {
     const { focusedId, activeDown, activeUp } = this.state
 
     if (prevState.focusedId !== focusedId) {
-      const focusedIdx = this.elems.findIndex(
+      const focusedIdx = this.refsArray.findIndex(
         ref => ref.current.id === focusedId
       )
 
@@ -49,7 +54,7 @@ class App extends Component {
         return
       }
 
-      if (focusedIdx === this.elems.length - 1) {
+      if (focusedIdx === this.refsArray.length - 1) {
         this.setState({
           activeUp: true,
           activeDown: false
@@ -71,7 +76,7 @@ class App extends Component {
   }
 
   setFocused() {
-    const focused = this.elems.find(ref => {
+    const focused = this.refsArray.find(ref => {
       const el = ref.current
 
       if (el) {
@@ -103,12 +108,13 @@ class App extends Component {
   scrollUpToNext = () => {
     const { focusedId } = this.state
 
-    const idx = this.elems.findIndex(ref => ref.current.id === focusedId) - 1
+    const idx =
+      this.refsArray.findIndex(ref => ref.current.id === focusedId) - 1
 
     if (idx < 0) return
 
     const centerWindow = document.documentElement.clientHeight / 2
-    const el = this.elems[idx].current
+    const el = this.refsArray[idx].current
 
     const top = el.offsetTop - centerWindow + el.offsetHeight / 2
 
@@ -122,12 +128,13 @@ class App extends Component {
   scrollDownToNext = () => {
     const { focusedId } = this.state
 
-    const idx = this.elems.findIndex(ref => ref.current.id === focusedId) + 1
+    const idx =
+      this.refsArray.findIndex(ref => ref.current.id === focusedId) + 1
 
-    if (!idx || idx === this.elems.length) return
+    if (!idx || idx === this.refsArray.length) return
 
     const centerWindow = document.documentElement.clientHeight / 2
-    const el = this.elems[idx].current
+    const el = this.refsArray[idx].current
     const top = el.offsetTop - centerWindow + el.offsetHeight / 2
 
     window.scrollTo({
@@ -147,33 +154,23 @@ class App extends Component {
 
   render() {
     const { questions, progress } = this.props
-    const { activeUp, activeDown } = this.state
+    const { activeUp, activeDown, focusedId } = this.state
 
     return (
       <div className={styles.container}>
         <main className={styles.main}>
-          {questions.map(({ id, type, total, text }) => (
-            <section
-              className={
-                id !== this.state.focusedId
-                  ? styles.question_section
-                  : styles.question_section_focused
-              }
-              key={id}
-              ref={this[id]}
-              id={id}
-            >
-              <div>
-                <h2 className={styles.text}>{text}</h2>
-                <Rating
-                  total={total}
-                  type={type}
-                  submitRating={this.submitRating}
-                  id={id}
-                />
-              </div>
-            </section>
-          ))}
+          {questions.map(({ title, quests, id }) => {
+            return (
+              <Question
+                key={id}
+                title={title}
+                quests={quests}
+                focusedId={focusedId}
+                submitRating={this.submitRating}
+                refsDic={this.refsDic}
+              />
+            )
+          })}
         </main>
         <footer
           className={
@@ -182,7 +179,7 @@ class App extends Component {
               : styles.footer_focused
           }
           id="footer"
-          ref={this.footer}
+          ref={this.refsDic.footer}
         >
           All DONE
         </footer>
@@ -200,6 +197,8 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   questions: state.questions,
+  //TODO: use reselect
+  subQuests: getAllSubQuests(state),
   progress: getProgress(state)
 })
 

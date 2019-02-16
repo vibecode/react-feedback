@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 import RenderIcon from '../icons/RenderIcon'
 import styles from './Rating.module.scss'
 import { v4 } from 'uuid'
@@ -17,12 +16,6 @@ export class Rating extends PureComponent {
 
       answerValue: ''
     }
-  }
-
-  static propTypes = {
-    total: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    submitRating: PropTypes.func.isRequired
   }
 
   handleChange = e => {
@@ -74,7 +67,7 @@ export class Rating extends PureComponent {
 
   render() {
     const { boxes, answerValue } = this.state
-    const { type } = this.props
+    const { icon } = this.props
 
     return (
       <form className={styles.rating_form}>
@@ -96,7 +89,7 @@ export class Rating extends PureComponent {
                 value === answerValue ? styles.label_anim : styles.label
               }
             >
-              <RenderIcon type={type} />
+              <RenderIcon icon={icon} />
             </label>
           </div>
         ))}

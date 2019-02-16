@@ -7,8 +7,8 @@ import { ReactComponent as Lightning } from './lightning.svg'
 import { ReactComponent as Heart } from './heart.svg'
 import { ReactComponent as Check } from './check.svg'
 
-function RenderIcon({ type }) {
-  switch (type) {
+function RenderIcon({ icon }) {
+  switch (icon) {
     case 'BOWL':
       return <Bowl />
     case 'STAR':
@@ -24,7 +24,7 @@ function RenderIcon({ type }) {
     case 'CHECK':
       return <Check />
     default:
-      break
+      return null
   }
 }
 

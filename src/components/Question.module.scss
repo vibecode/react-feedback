@@ -1,0 +1,40 @@
+.center_wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.question_section {
+  color: white;
+}
+
+.title {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 200;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  opacity: 0.2;
+  transition: opacity 0.4s ease-out;
+}
+
+.title_focused {
+  composes: title;
+  opacity: 1;
+}
+
+.sub_question_section {
+  height: 180px;
+  color: white;
+  opacity: 0.2;
+  transition: opacity 0.4s ease-out;
+}
+
+.sub_question_section_focused {
+  composes: sub_question_section;
+  opacity: 1;
+}
+
+.sub_title {
+  font-weight: 200;
+  font-size: 20px;
+}

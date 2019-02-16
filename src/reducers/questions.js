@@ -3,64 +3,131 @@ import { v4 } from 'uuid'
 const initialState = [
   {
     id: v4(),
-    type: 'BOWL',
-    text: 'Design of the site',
-    answered: false,
-    total: 5,
-    rating: 0
+    title: 'How would you rate our online store, based on:',
+    quests: [
+      {
+        id: v4(),
+        type: 'RATING',
+        icon: 'BOWL',
+        title: 'Design of the site',
+        answered: false,
+        total: 5,
+        rating: 0
+      },
+      {
+        id: v4(),
+        type: 'RATING',
+        icon: 'STAR',
+        title: 'The range of products',
+        answered: false,
+        total: 5,
+        rating: 0
+      },
+      {
+        id: v4(),
+        type: 'RATING',
+        icon: 'THUMB',
+        title: 'Finding what you needed',
+        answered: false,
+        total: 5,
+        rating: 0
+      },
+      {
+        id: v4(),
+        type: 'RATING',
+        icon: 'PEN',
+        title: 'Product description',
+        answered: false,
+        total: 5,
+        rating: 0
+      }
+    ]
   },
   {
     id: v4(),
-    type: 'STAR',
-    text: 'Design of the site',
-    answered: false,
-    total: 5,
-    rating: 0
+    title:
+      'Thanks for that, now could you tell us a bit about the delivery process?',
+    quests: [
+      {
+        id: v4(),
+        type: 'RATING',
+        icon: 'LIGHTNING',
+        title: 'How would you rate the delivery time?',
+        answered: false,
+        total: 5,
+        rating: ''
+      },
+      {
+        id: v4(),
+        type: 'RATING',
+        icon: 'HEART',
+        title: 'The friendliness of the delivery driver?',
+        answered: false,
+        total: 5,
+        rating: 0
+      },
+      {
+        id: v4(),
+        type: 'RATING',
+        icon: 'CHECK',
+        title: 'And the quality and condition of the received product?',
+        answered: false,
+        total: 5,
+        rating: 0
+      }
+    ]
   },
   {
     id: v4(),
-    type: 'PEN',
-    text: 'Design of the site',
-    answered: false,
-    total: 5,
-    rating: 0
+    title: 'Could you tell us from where you placed your order?',
+    quests: [
+      {
+        id: v4(),
+        type: 'PLATFORM',
+        answered: false,
+        answer: ''
+      }
+    ]
   },
   {
     id: v4(),
-    type: 'LIGHTNING',
-    text: 'Design of the site',
-    answered: false,
-    total: 5,
-    rating: ''
+    title: 'Thanks, and would you recommend us to your friends?',
+    quests: [
+      {
+        id: v4(),
+        type: 'CHANCE',
+        answered: false,
+        total: 10,
+        rating: 0
+      }
+    ]
   },
   {
     id: v4(),
-    type: 'HEART',
-    text: 'Design of the site',
-    answered: false,
-    total: 5,
-    rating: 0
+    title: 'Now, do you have any suggestions for us?',
+    quests: [
+      {
+        id: v4(),
+        type: 'FORM',
+        answer: ''
+      }
+    ]
   },
   {
     id: v4(),
-    type: 'THUMB',
-    text: 'Design of the site',
-    answered: false,
-    total: 5,
-    rating: 0
-  },
-  {
-    id: v4(),
-    type: 'CHECK',
-    text: 'Design of the site',
-    answered: false,
-    total: 5,
-    rating: 0
+    title: 'Finally, would you like 15% off your next shop?',
+    quests: [
+      {
+        id: v4(),
+        type: 'FORM',
+        answer: ''
+      }
+    ]
   }
 ]
 
-const questions = (state = initialState, { type, payload }) => {
-  switch (type) {
+const questions = (state = initialState, { icon, payload }) => {
+  switch (icon) {
     case 'ANSWER':
       const quest = state.find(quest => quest.id === payload.id)
 
@@ -76,6 +143,12 @@ const questions = (state = initialState, { type, payload }) => {
     default:
       return state
   }
+}
+
+export const getAllSubQuests = state => {
+  return state.questions.reduce((acc, cur) => {
+    return [...acc, ...cur.quests]
+  }, [])
 }
 
 export const getProgress = state => {
