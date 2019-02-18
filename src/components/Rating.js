@@ -21,6 +21,7 @@ export class Rating extends PureComponent {
   handleChange = e => {
     const { value } = e.target
     const { boxes, answerValue } = this.state
+    const { id, parentId } = this.props
 
     const currentBox = boxes.find(box => box.value === value)
 
@@ -37,7 +38,8 @@ export class Rating extends PureComponent {
           this.props.submitRating({
             rating: 0,
             answered: false,
-            id: this.props.id
+            id,
+            parentId
           })
         }
       )
@@ -59,7 +61,8 @@ export class Rating extends PureComponent {
         this.props.submitRating({
           rating: Number(answerValue) || 0,
           answered: true,
-          id: this.props.id
+          id,
+          parentId
         })
       }
     )

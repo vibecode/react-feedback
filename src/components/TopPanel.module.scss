@@ -1,0 +1,20 @@
+.container {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  max-height: 100px;
+  background-color: rgba(128, 128, 128, 0.6);
+  transition: max-height 0.3s ease-out; // note that we're transitioning max-height, not height!
+}
+
+.title {
+  color: white;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 20px;
+  font-weight: 200;
+  padding: 20px 10px;
+  max-width: 840px;
+  margin: 0 auto;
+}

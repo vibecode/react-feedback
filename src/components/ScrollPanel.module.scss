@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
   position: fixed;
@@ -68,4 +69,5 @@
 
 .buttons_container {
   margin-right: 30px;
+  min-width: 100px;
 }

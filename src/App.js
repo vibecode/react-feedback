@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
+import Question from './components/Question'
+import TopPanel from './components/TopPanel'
+import ScrollPanel from './components/ScrollPanel'
 import { connect } from 'react-redux'
 import { throttle } from 'lodash'
-import styles from './App.module.scss'
-import ScrollPanel from './components/ScrollPanel'
 import { getProgress } from './reducers/questions'
 import { answer } from './actions'
-import Question from './components/Question'
 import { getAllSubQuests } from './reducers/questions'
+import styles from './App.module.scss'
 class App extends Component {
   constructor(props) {
     super(props)
@@ -76,6 +77,8 @@ class App extends Component {
   }
 
   setFocused() {
+    const { questions } = this.props
+
     const focused = this.refsArray.find(ref => {
       const el = ref.current
 
@@ -91,8 +94,14 @@ class App extends Component {
     })
 
     if (focused) {
+      const focusedId = focused.current.id
+      const focusedParent = questions.find(parent =>
+        parent.quests.some(quest => quest.id === focusedId)
+      )
+
       this.setState({
-        focusedId: focused.current.id
+        focusedId: focusedId,
+        focusedMainTitle: focusedParent && focusedParent.title
       })
     } else {
       this.setState({
@@ -154,35 +163,38 @@ class App extends Component {
 
   render() {
     const { questions, progress } = this.props
-    const { activeUp, activeDown, focusedId } = this.state
+    const { activeUp, activeDown, focusedId, focusedMainTitle } = this.state
 
     return (
       <div className={styles.container}>
-        <main className={styles.main}>
-          {questions.map(({ title, quests, id }) => {
-            return (
-              <Question
-                key={id}
-                title={title}
-                quests={quests}
-                focusedId={focusedId}
-                submitRating={this.submitRating}
-                refsDic={this.refsDic}
-              />
-            )
-          })}
-        </main>
-        <footer
-          className={
-            this.state.focusedId !== 'footer'
-              ? styles.footer
-              : styles.footer_focused
-          }
-          id="footer"
-          ref={this.refsDic.footer}
-        >
-          All DONE
-        </footer>
+        <TopPanel title={focusedMainTitle} />
+        <div className={styles.center_wrapper}>
+          <main className={styles.main}>
+            {questions.map(({ title, quests, id }) => {
+              return (
+                <Question
+                  key={id}
+                  title={title}
+                  quests={quests}
+                  focusedId={focusedId}
+                  submitRating={this.submitRating}
+                  refsDic={this.refsDic}
+                />
+              )
+            })}
+          </main>
+          <footer
+            className={
+              this.state.focusedId !== 'footer'
+                ? styles.footer
+                : styles.footer_focused
+            }
+            id="footer"
+            ref={this.refsDic.footer}
+          >
+            All DONE
+          </footer>
+        </div>
         <ScrollPanel
           activeUp={activeUp}
           activeDown={activeDown}

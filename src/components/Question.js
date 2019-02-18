@@ -7,7 +7,7 @@ export class Question extends PureComponent {
     this.props.submitRating(answer)
   }
 
-  renderQuest({ id, icon, type, title, total }) {
+  renderQuest({ id, parentId, icon, type, title, total }) {
     return (
       <section
         className={
@@ -23,6 +23,7 @@ export class Question extends PureComponent {
           <h2 className={styles.sub_title}>{title}</h2>
           <Rating
             id={id}
+            parentId={parentId}
             icon={icon}
             total={total}
             submitRating={this.submitRating}
@@ -38,16 +39,12 @@ export class Question extends PureComponent {
 
     return (
       <section className={styles.question_section}>
-        <div className={styles.center_wrapper}>
-          <h1
-            className={focusedIdx === 0 ? styles.title_focused : styles.title}
-          >
-            {title}
-          </h1>
-          {quests.map(quest => {
-            return this.renderQuest(quest)
-          })}
-        </div>
+        <h1 className={focusedIdx === 0 ? styles.title_focused : styles.title}>
+          {title}
+        </h1>
+        {quests.map(quest => {
+          return this.renderQuest(quest)
+        })}
       </section>
     )
   }
