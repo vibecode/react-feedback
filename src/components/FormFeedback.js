@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react'
 import styles from './FormFeedback.module.scss'
 import { CSSTransition } from 'react-transition-group'
+import Textarea from 'react-textarea-autosize'
 
 export class FeedbackForm extends PureComponent {
-  input = React.createRef()
-
   state = {
     answer: ''
   }
@@ -13,8 +12,7 @@ export class FeedbackForm extends PureComponent {
     const { value } = ev.target
 
     this.setState({
-      answer: value,
-      inputHeight: this.input.current.scrollHeight + 'px'
+      answer: value
     })
   }
 
@@ -34,16 +32,11 @@ export class FeedbackForm extends PureComponent {
   render() {
     return (
       <form className={styles.form}>
-        <textarea
-          type="textarea"
+        <Textarea
           className={styles.input}
           onChange={this.onInputChange}
           placeholder="Type your answer here"
-          rows="1"
-          ref={this.input}
-          style={{
-            height: this.state.inputHeight
-          }}
+          inputRef={tag => (this.input = tag)}
         />
         <p className={styles.hint}>
           <strong>SHIFT</strong> + <strong>ENTER</strong> to make a line break
