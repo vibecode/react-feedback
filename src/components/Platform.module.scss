@@ -23,13 +23,24 @@
   max-width: 100%;
   min-width: 165px;
   height: 100%;
-  width: calc(25% - 8px);
+  width: calc((25% - 8px) + 2px);
+
+  &:last-child {
+    margin-right: 0;
+  }
 
   &:hover {
     .input_container {
       background-color: rgba(255, 255, 255, 0.4);
     }
   }
+}
+
+.item_container_checked {
+  composes: item_container;
+  opacity: 1;
+  animation-name: flash;
+  animation-duration: 0.5s;
 }
 
 .icon_container {
@@ -88,7 +99,7 @@
 }
 
 .label {
-  margin-bottom: 4px;
+  margin-bottom: 10px;
   height: 160px;
   display: flex;
   align-items: center;
@@ -134,4 +145,17 @@
   display: inline-flex;
   margin: 0;
   width: 100%;
+}
+
+@keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
 }

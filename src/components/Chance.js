@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import style from './Chance.module.scss'
+import styles from './Chance.module.scss'
 
 export class Chance extends PureComponent {
   constructor(props) {
@@ -45,22 +45,35 @@ export class Chance extends PureComponent {
     const { answer } = this.state
 
     return (
-      <form className={style.form}>
-        {this.totalArr.map(rating => {
-          return (
-            <div className={style.checkbox_container}>
-              <input
-                type="checkbox"
-                id={rating}
-                value={rating}
-                checked={answer === rating.toString()}
-                onChange={this.onChange}
-              />
-              <label htmlFor={rating}>{rating}</label>
-            </div>
-          )
-        })}
-      </form>
+      <div>
+        <form className={styles.form}>
+          {this.totalArr.map(rating => {
+            return (
+              <div
+                className={
+                  answer === rating.toString()
+                    ? styles.checkbox_container_checked
+                    : styles.checkbox_container
+                }
+              >
+                <input
+                  type="checkbox"
+                  id={rating}
+                  value={rating}
+                  checked={answer === rating.toString()}
+                  onChange={this.onChange}
+                />
+                <label htmlFor={rating}>{rating}</label>
+              </div>
+            )
+          })}
+        </form>
+        <div className={styles.legend}>
+          <span>Not at all</span>
+          <span>Hmm, maybe</span>
+          <span>100%</span>
+        </div>
+      </div>
     )
   }
 }

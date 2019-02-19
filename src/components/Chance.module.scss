@@ -3,12 +3,72 @@
   height: 64px;
   color: rgb(255, 255, 255);
   display: flex;
-  flex-direction: row;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgb(255, 255, 255);
-  border-image: initial;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid white;
   border-radius: 3px;
   overflow: hidden;
+
+  input {
+    display: none;
+  }
+
+  label {
+    font-weight: 200;
+    font-size: 20px;
+    width: 100%;
+    height: 100%;
+    line-height: 28px;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.checkbox_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: background-color 0.2s ease;
+  user-select: none;
+  box-shadow: rgba(255, 255, 255, 0.6) -1px 0px;
+  flex: 1 1 0%;
+
+  &:hover:not(.checkbox_container_checked) {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.checkbox_container_checked {
+  composes: checkbox_container;
+  background-color: rgba(255, 255, 255, 0.7);
+  animation-name: flash;
+  animation-duration: 0.5s;
+}
+
+.legend {
+  display: flex;
+  width: 100%;
+  margin-top: 8px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+@keyframes flash {
+  from,
+  50%,
+  to {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  25%,
+  75% {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 }
