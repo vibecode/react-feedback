@@ -50,6 +50,7 @@ export class Chance extends PureComponent {
           {this.totalArr.map(rating => {
             return (
               <div
+                key={rating}
                 className={
                   answer === rating.toString()
                     ? styles.checkbox_container_checked
