@@ -1,0 +1,14 @@
+.form {
+  width: 100%;
+  height: 64px;
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(255, 255, 255);
+  border-image: initial;
+  border-radius: 3px;
+  overflow: hidden;
+}
