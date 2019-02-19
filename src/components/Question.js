@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import Rating from './Rating'
 import Platform from './Platform'
 import Chance from './Chance'
+import FormFeedback from './FormFeedback'
 import styles from './Question.module.scss'
 
 export class Question extends PureComponent {
@@ -50,6 +51,14 @@ export class Question extends PureComponent {
                     parentId={parentId}
                     submitAnswer={this.submitAnswer}
                     total={total}
+                  />
+                )
+              case 'FEEDBACK':
+                return (
+                  <FormFeedback
+                    id={id}
+                    parentId={parentId}
+                    submitAnswer={this.submitAnswer}
                   />
                 )
               default:

@@ -118,8 +118,9 @@ const initialState = [
       {
         id: v4(),
         parentId: 5,
-        type: 'FORM',
-        answer: ''
+        type: 'FEEDBACK',
+        answer: '',
+        answered: false
       }
     ]
   },
@@ -130,8 +131,9 @@ const initialState = [
       {
         id: v4(),
         parentId: 6,
-        type: 'FORM',
-        answer: ''
+        type: 'EMAIL',
+        answer: '',
+        answered: false
       }
     ]
   }
