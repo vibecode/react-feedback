@@ -1,9 +1,10 @@
 .container {
   display: flex;
+  position: fixed;
+  z-index: 999;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
   bottom: 0;
   width: 100%;
   padding: 10px;
@@ -48,6 +49,7 @@
 .progress {
   color: white;
   margin-left: 30px;
+  margin-right: 16px;
   width: 60%;
 }
 

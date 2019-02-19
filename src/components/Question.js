@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react'
 import Rating from './Rating'
+import Platform from './Platform'
+import Chance from './Chance'
 import styles from './Question.module.scss'
 
 export class Question extends PureComponent {
-  submitRating = answer => {
-    this.props.submitRating(answer)
+  submitAnswer = answer => {
+    this.props.submitAnswer(answer)
   }
 
   renderQuest({ id, parentId, icon, type, title, total }) {
@@ -19,16 +21,42 @@ export class Question extends PureComponent {
         id={id}
         ref={this.props.refsDic[id]}
       >
-        <div>
+        <>
           <h2 className={styles.sub_title}>{title}</h2>
-          <Rating
-            id={id}
-            parentId={parentId}
-            icon={icon}
-            total={total}
-            submitRating={this.submitRating}
-          />
-        </div>
+          {(() => {
+            switch (type) {
+              case 'RATING':
+                return (
+                  <Rating
+                    id={id}
+                    parentId={parentId}
+                    icon={icon}
+                    total={total}
+                    submitRating={this.submitAnswer}
+                  />
+                )
+              case 'PLATFORM':
+                return (
+                  <Platform
+                    id={id}
+                    parentId={parentId}
+                    submitAnswer={this.submitAnswer}
+                  />
+                )
+              case 'CHANCE':
+                return (
+                  <Chance
+                    id={id}
+                    parentId={parentId}
+                    submitAnswer={this.submitAnswer}
+                    total={total}
+                  />
+                )
+              default:
+                return null
+            }
+          })()}
+        </>
       </section>
     )
   }

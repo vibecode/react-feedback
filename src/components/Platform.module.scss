@@ -1,0 +1,137 @@
+.form {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin-bottom: -8px;
+  margin-right: -8px;
+
+  input {
+    display: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.item_container {
+  margin-right: 8px;
+  margin-bottom: 8px;
+  max-width: 100%;
+  min-width: 165px;
+  height: 100%;
+  width: calc(25% - 8px);
+
+  &:hover {
+    .input_container {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+  }
+}
+
+.icon_container {
+  min-width: 75px;
+  position: relative;
+  height: 100%;
+}
+
+.check_icon {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 1;
+  width: 48px;
+  height: 48px;
+  border-top-right-radius: 4px;
+  display: flex;
+  overflow: hidden;
+}
+
+.check_icon::before {
+  content: '';
+  display: block;
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  border-width: 24px;
+  border-style: solid;
+  border-image: initial;
+  border-color: rgb(255, 255, 255) rgb(255, 255, 255) transparent transparent;
+}
+
+.svg_check_container {
+  position: absolute;
+  right: 6px;
+  top: 7px;
+
+  svg {
+    fill: grey;
+  }
+}
+
+.input_container {
+  min-height: 40px;
+  color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.2s ease;
+  box-shadow: rgba(255, 255, 255, 0.8) 0px 0px 0px 2px inset;
+  cursor: pointer;
+  opacity: 1;
+  height: 100%;
+  border-radius: 4px;
+  animation: qNIWx 0.25s ease 0s 2 normal none running;
+}
+
+.label {
+  margin-bottom: 4px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 8px 0px;
+}
+
+.title_container {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+}
+
+.key {
+  position: relative;
+  width: 24px;
+  min-width: 22px;
+  height: 24px;
+  font-size: 12px;
+  line-height: 16px;
+  margin-right: 8px;
+  font-family: sans-serif;
+  background-color: rgba(218, 218, 218, 0.8);
+  color: white;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  border-color: rgba(255, 255, 255, 0.6);
+
+  span {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.title {
+  display: inline-flex;
+  margin: 0;
+  width: 100%;
+}

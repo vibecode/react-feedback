@@ -8,6 +8,7 @@ import { getProgress } from './reducers/questions'
 import { answer } from './actions'
 import { getAllSubQuests } from './reducers/questions'
 import styles from './App.module.scss'
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -153,9 +154,10 @@ class App extends Component {
     })
   }
 
-  submitRating = answer => {
+  submitAnswer = answer => {
     this.props.answer(answer)
 
+    //TODO: must scroll based on clicked item: if no focus on clicked - set focus
     if (answer.answered) {
       setTimeout(() => this.scrollDownToNext(), 800)
     }
@@ -177,7 +179,7 @@ class App extends Component {
                   title={title}
                   quests={quests}
                   focusedId={focusedId}
-                  submitRating={this.submitRating}
+                  submitAnswer={this.submitAnswer}
                   refsDic={this.refsDic}
                 />
               )
