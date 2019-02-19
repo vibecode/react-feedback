@@ -29,14 +29,21 @@ export class FeedbackForm extends PureComponent {
     })
   }
 
+  onEnterPress = ev => {
+    if (ev.key === 'Enter' && !ev.shiftKey) {
+      this.onSubmit(ev)
+    }
+  }
+
   render() {
     return (
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={this.onSubmit}>
         <Textarea
           className={styles.input}
           onChange={this.onInputChange}
           placeholder="Type your answer here"
           inputRef={tag => (this.input = tag)}
+          onKeyPress={this.onEnterPress}
         />
         <p className={styles.hint}>
           <strong>SHIFT</strong> + <strong>ENTER</strong> to make a line break
@@ -49,11 +56,7 @@ export class FeedbackForm extends PureComponent {
           timeout={500}
           classNames="button_trans"
         >
-          <button
-            onClick={this.onSubmit}
-            className={styles.submit}
-            key="submit_button"
-          >
+          <button className={styles.submit} key="submit_button" type="submit">
             <div className={styles.ok}>OK</div>
             <span className={styles.svg_container}>
               <svg width="16" height="13" xmlns="http://www.w3.org/2000/svg">
