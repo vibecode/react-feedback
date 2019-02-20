@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Question from './components/Question'
 import TopPanel from './components/TopPanel'
 import ScrollPanel from './components/ScrollPanel'
+import SubmitButton from './components/SubmitButton'
 import { connect } from 'react-redux'
 import { throttle } from 'lodash'
 import { getProgress } from './reducers/questions'
@@ -158,9 +159,7 @@ class App extends Component {
     this.props.answer(answer)
 
     //TODO: must scroll based on clicked item: if no focus on clicked - set focus
-    if (answer.answered) {
-      setTimeout(() => this.scrollDownToNext(), 800)
-    }
+    setTimeout(() => this.scrollDownToNext(), 800)
   }
 
   render() {
@@ -194,7 +193,7 @@ class App extends Component {
             id="footer"
             ref={this.refsDic.footer}
           >
-            All DONE
+            <SubmitButton text={'All done!'} />
           </footer>
         </div>
         <ScrollPanel

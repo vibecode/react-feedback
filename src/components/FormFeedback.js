@@ -32,6 +32,8 @@ export class FeedbackForm extends PureComponent {
 
   onEnterPress = ev => {
     if (ev.key === 'Enter' && !ev.shiftKey) {
+      console.log('kek')
+
       this.onSubmit(ev)
     }
   }

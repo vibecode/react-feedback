@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from './SubmitButton.module.scss'
 
-function SubmitButton() {
+function SubmitButton({ text }) {
   return (
     <div className={styles.container}>
       <button className={styles.submit} key="submit_button" type="submit">
-        <div className={styles.ok}>OK</div>
+        <div className={styles.ok}>{text || 'OK'}</div>
         <span className={styles.svg_container}>
           <svg width="16" height="13" xmlns="http://www.w3.org/2000/svg">
             <path
