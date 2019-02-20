@@ -84,13 +84,9 @@ export class Question extends PureComponent {
   render() {
     const { quests } = this.props
 
-    return (
-      <section className={styles.question_section}>
-        {quests.map((quest, mapIdx) => {
-          return this.renderQuest(quest, mapIdx)
-        })}
-      </section>
-    )
+    return quests.map((quest, mapIdx) => {
+      return this.renderQuest(quest, mapIdx)
+    })
   }
 }
 

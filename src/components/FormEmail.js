@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import styles from './FormEmail.module.scss'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 import isEmail from 'validator/lib/isEmail'
 import SubmitButton from './SubmitButton'
 

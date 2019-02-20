@@ -8,6 +8,8 @@ import { throttle } from 'lodash'
 import { getProgress } from './reducers/questions'
 import { answer } from './actions'
 import { getAllSubQuests } from './reducers/questions'
+import { CSSTransition } from 'react-transition-group'
+
 import styles from './App.module.scss'
 
 class App extends Component {
@@ -87,9 +89,11 @@ class App extends Component {
       if (el) {
         const elTop = el.getBoundingClientRect().top
         const elBottom = el.getBoundingClientRect().bottom
-        const centerWindow = document.documentElement.clientHeight / 2
+        const centerWindow = Math.floor(
+          document.documentElement.clientHeight / 2
+        )
 
-        return elTop <= centerWindow && elBottom >= centerWindow
+        return elTop < centerWindow && elBottom > centerWindow
       } else {
         return false
       }
@@ -101,9 +105,15 @@ class App extends Component {
         parent.quests.some(quest => quest.id === focusedId)
       )
 
+      const parentTop =
+        focusedParent && this[focusedParent.id].getBoundingClientRect().top
+
+      //TODО: prevent unneseccery renders
       this.setState({
         focusedId: focusedId,
-        focusedMainTitle: focusedParent && focusedParent.title
+        focusedParentId: focusedParent && focusedParent.id,
+        focusedMainTitle: focusedParent && focusedParent.title,
+        showTop: parentTop < 0
       })
     } else {
       this.setState({
@@ -164,23 +174,42 @@ class App extends Component {
 
   render() {
     const { questions, progress } = this.props
-    const { activeUp, activeDown, focusedId, focusedMainTitle } = this.state
+    const {
+      activeUp,
+      activeDown,
+      focusedId,
+      focusedMainTitle,
+      showTop
+    } = this.state
 
     return (
       <div className={styles.container}>
-        <TopPanel title={focusedMainTitle} />
+        <CSSTransition
+          in={showTop}
+          mountOnEnter
+          unmountOnExit
+          timeout={500}
+          classNames="trans_top"
+        >
+          <TopPanel title={focusedMainTitle} />
+        </CSSTransition>
         <div className={styles.center_wrapper}>
           <main className={styles.main}>
             {questions.map(({ title, quests, id }) => {
               return (
-                <Question
+                <section
                   key={id}
-                  title={title}
-                  quests={quests}
-                  focusedId={focusedId}
-                  submitAnswer={this.submitAnswer}
-                  refsDic={this.refsDic}
-                />
+                  ref={tag => (this[id] = tag)}
+                  style={{ margin: 0, padding: 0 }}
+                >
+                  <Question
+                    title={title}
+                    quests={quests}
+                    focusedId={focusedId}
+                    submitAnswer={this.submitAnswer}
+                    refsDic={this.refsDic}
+                  />
+                </section>
               )
             })}
           </main>

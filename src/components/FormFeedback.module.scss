@@ -37,24 +37,3 @@
   font-size: 12px;
   margin-bottom: 22px;
 }
-
-:global .trans {
-  &-enter {
-    opacity: 0.01;
-    transform: translateY(50%);
-  }
-  &-enter-active {
-    opacity: 1;
-    transform: translateY(0%);
-    transition: all 0.5s ease-out;
-  }
-  &-exit {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-  &-exit-active {
-    opacity: 0.01;
-    transform: translateY(50%);
-    transition: all 0.5s ease-out;
-  }
-}

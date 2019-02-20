@@ -1,0 +1,68 @@
+html {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(36, 14, 56);
+  background-image: url('./bg.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+:global .trans {
+  &-enter {
+    opacity: 0.01;
+    transform: translateY(50%);
+  }
+  &-enter-active {
+    opacity: 1;
+    transform: translateY(0%);
+    transition: all 0.5s ease-out;
+  }
+  &-exit {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  &-exit-active {
+    opacity: 0.01;
+    transform: translateY(50%);
+    transition: all 0.5s ease-out;
+  }
+}
+
+:global .trans_top {
+  &-enter {
+    opacity: 0.01;
+    transform: translateY(-100%);
+  }
+  &-enter-active {
+    opacity: 1;
+    transform: translateY(0%);
+    transition: all 0.5s ease-out;
+  }
+  &-exit {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  &-exit-active {
+    opacity: 0.01;
+    transform: translateY(-100%);
+    transition: all 0.5s ease-out;
+  }
+}
