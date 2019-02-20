@@ -11,7 +11,7 @@ export class Question extends PureComponent {
     this.props.submitAnswer(answer)
   }
 
-  renderQuest({ id, parentId, icon, type, title, total }) {
+  renderQuest({ id, parentId, icon, type, title, total }, mapIdx) {
     return (
       <section
         className={
@@ -24,6 +24,9 @@ export class Question extends PureComponent {
         ref={this.props.refsDic[id]}
       >
         <>
+          {mapIdx === 0 ? (
+            <h1 className={styles.title}>{this.props.title}</h1>
+          ) : null}
           <h2 className={styles.sub_title}>{title}</h2>
           {(() => {
             switch (type) {
@@ -79,17 +82,12 @@ export class Question extends PureComponent {
     )
   }
   render() {
-    const { quests, title, focusedId } = this.props
-
-    const focusedIdx = quests.findIndex(quest => quest.id === focusedId)
+    const { quests } = this.props
 
     return (
       <section className={styles.question_section}>
-        <h1 className={focusedIdx === 0 ? styles.title_focused : styles.title}>
-          {title}
-        </h1>
-        {quests.map(quest => {
-          return this.renderQuest(quest)
+        {quests.map((quest, mapIdx) => {
+          return this.renderQuest(quest, mapIdx)
         })}
       </section>
     )
