@@ -3,6 +3,7 @@ import Rating from './Rating'
 import Platform from './Platform'
 import Chance from './Chance'
 import FormFeedback from './FormFeedback'
+import FormEmail from './FormEmail'
 import styles from './Question.module.scss'
 
 export class Question extends PureComponent {
@@ -56,6 +57,14 @@ export class Question extends PureComponent {
               case 'FEEDBACK':
                 return (
                   <FormFeedback
+                    id={id}
+                    parentId={parentId}
+                    submitAnswer={this.submitAnswer}
+                  />
+                )
+              case 'EMAIL':
+                return (
+                  <FormEmail
                     id={id}
                     parentId={parentId}
                     submitAnswer={this.submitAnswer}

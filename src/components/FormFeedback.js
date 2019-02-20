@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import styles from './FormFeedback.module.scss'
 import { CSSTransition } from 'react-transition-group'
 import Textarea from 'react-textarea-autosize'
+import SubmitButton from './SubmitButton'
 
 export class FeedbackForm extends PureComponent {
   state = {
@@ -41,7 +42,7 @@ export class FeedbackForm extends PureComponent {
         <Textarea
           className={styles.input}
           onChange={this.onInputChange}
-          placeholder="Type your answer here"
+          placeholder="Type your answer here..."
           inputRef={tag => (this.input = tag)}
           onKeyPress={this.onEnterPress}
         />
@@ -54,19 +55,9 @@ export class FeedbackForm extends PureComponent {
           mountOnEnter
           unmountOnExit
           timeout={500}
-          classNames="button_trans"
+          classNames="trans"
         >
-          <button className={styles.submit} key="submit_button" type="submit">
-            <div className={styles.ok}>OK</div>
-            <span className={styles.svg_container}>
-              <svg width="16" height="13" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  fillRule="nonzero"
-                  d="M14.293.293l1.414 1.414L5 12.414.293 7.707l1.414-1.414L5 9.586z"
-                />
-              </svg>
-            </span>
-          </button>
+          <SubmitButton />
         </CSSTransition>
       </form>
     )

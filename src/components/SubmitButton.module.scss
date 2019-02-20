@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+}
+
+.legend {
+  margin-left: 20px;
+  font-size: 12px;
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  position: relative;
+  font-family: inherit;
+  font-weight: 700;
+  line-height: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 12px 0px;
+  min-height: 40px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(128, 128, 128);
+  transition: background-color 0.2s ease 0s, color 0.2s ease 0s,
+    border-color 0.2s ease 0s, opacity 0.2s ease 0s;
+  outline: none;
+  border-width: 1px;
+  border-style: solid;
+  border-image: initial;
+  padding: 4px 14px 6px;
+  border-color: transparent;
+  border-radius: 4px;
+}
+
+.svg_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8px;
+  svg {
+    display: block;
+    fill: rgb(128, 128, 128);
+    transition: fill 0.2s ease 0s;
+  }
+}
+
+.ok {
+  margin-top: 3px;
+}

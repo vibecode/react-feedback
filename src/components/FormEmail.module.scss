@@ -1,0 +1,46 @@
+.input {
+  display: block;
+  width: 100%;
+  font-family: inherit;
+  color: rgb(255, 255, 255);
+  transform: translateZ(0px);
+  font-size: 30px;
+  line-height: 38px;
+  padding: 0px 0px 8px;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  outline: none;
+  border-radius: 0px;
+  transition: box-shadow 0.2s ease 0s;
+  background: none;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    font-weight: 200;
+  }
+
+  &:not(:focus) {
+    box-shadow: rgba(255, 255, 255, 0.3) 0px 1px;
+  }
+}
+
+.legend {
+  font-size: 16px;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.795);
+  margin-top: 0;
+}
+.trans_container {
+  position: relative;
+}
+
+.error {
+  top: 0;
+  left: 0;
+  position: absolute;
+  padding: 5px;
+  background-color: rgba(255, 0, 64, 0.7);
+  border-radius: 3px;
+}
