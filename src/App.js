@@ -176,7 +176,10 @@ class App extends Component {
     })
   }
 
-  scrollToFocus(currentId) {
+  scrollToFocus = currentId => {
+    console.log(currentId)
+    if (currentId === this.state.focusedId) return
+
     const el = this.refsDic[currentId].current
 
     const centerWindow = document.documentElement.clientHeight / 2
@@ -238,6 +241,7 @@ class App extends Component {
                     focusedId={focusedId}
                     submitAnswer={this.submitAnswer}
                     refsDic={this.refsDic}
+                    onFormFocus={this.scrollToFocus}
                   />
                 </section>
               )

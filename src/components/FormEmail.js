@@ -19,8 +19,8 @@ export class FormEmail extends PureComponent {
   componentDidUpdate(prevProps) {
     const { focused } = this.props
 
-    if (focused && prevProps.focused !== focused) {
-      this.input.focus()
+    if (prevProps.focus !== focused) {
+      focused ? this.input.focus() : this.input.blur()
     }
   }
 
@@ -60,6 +60,10 @@ export class FormEmail extends PureComponent {
     }
   }
 
+  onFocus = () => {
+    this.props.onFocus(this.props.id)
+  }
+
   render() {
     const { answer, error } = this.state
     return (
@@ -75,6 +79,7 @@ export class FormEmail extends PureComponent {
           placeholder="Type your email here..."
           ref={tag => (this.input = tag)}
           onKeyPress={this.onEnterPress}
+          onFocus={this.onFocus}
         />
 
         <div className={styles.trans_container}>

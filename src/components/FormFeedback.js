@@ -18,8 +18,8 @@ export class FeedbackForm extends PureComponent {
   componentDidUpdate(prevProps) {
     const { focused } = this.props
 
-    if (focused && prevProps.focused !== focused) {
-      this.input.focus()
+    if (prevProps.focus !== focused) {
+      focused ? this.input.focus() : this.input.blur()
     }
   }
 
@@ -46,10 +46,12 @@ export class FeedbackForm extends PureComponent {
 
   onEnterPress = ev => {
     if (ev.key === 'Enter' && !ev.shiftKey) {
-      console.log('kek')
-
       this.onSubmit(ev)
     }
+  }
+
+  onFocus = () => {
+    this.props.onFocus(this.props.id)
   }
 
   render() {
@@ -61,6 +63,7 @@ export class FeedbackForm extends PureComponent {
           placeholder="Type your answer here..."
           inputRef={tag => (this.input = tag)}
           onKeyPress={this.onEnterPress}
+          onFocus={this.onFocus}
         />
         <p className={styles.hint}>
           <strong>SHIFT</strong> + <strong>ENTER</strong> to make a line break

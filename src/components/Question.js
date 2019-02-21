@@ -66,6 +66,7 @@ export class Question extends PureComponent {
                     parentId={parentId}
                     submitAnswer={this.submitAnswer}
                     focused={focused}
+                    onFocus={this.props.onFormFocus}
                   />
                 )
               case 'EMAIL':
@@ -75,6 +76,7 @@ export class Question extends PureComponent {
                     parentId={parentId}
                     submitAnswer={this.submitAnswer}
                     focused={focused}
+                    onFocus={this.props.onFormFocus}
                   />
                 )
               default:
