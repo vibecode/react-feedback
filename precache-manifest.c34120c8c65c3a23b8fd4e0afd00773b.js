@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "72f566b8c3aaa8550b4e",
-    "url": "/react-feedback/static/css/main.c182e8d4.chunk.css"
+    "revision": "a0bb10f9a9de1bc5afe3",
+    "url": "/react-feedback/static/css/main.88d46c01.chunk.css"
   },
   {
-    "revision": "72f566b8c3aaa8550b4e",
-    "url": "/react-feedback/static/js/main.72f566b8.chunk.js"
+    "revision": "a0bb10f9a9de1bc5afe3",
+    "url": "/react-feedback/static/js/main.a0bb10f9.chunk.js"
   },
   {
-    "revision": "96f33c232e9075c2ddf3",
-    "url": "/react-feedback/static/css/1.0e052fe5.chunk.css"
+    "revision": "5c33d3ec8b853aed654b",
+    "url": "/react-feedback/static/css/1.61da0ae8.chunk.css"
   },
   {
-    "revision": "96f33c232e9075c2ddf3",
-    "url": "/react-feedback/static/js/1.96f33c23.chunk.js"
+    "revision": "5c33d3ec8b853aed654b",
+    "url": "/react-feedback/static/js/1.5c33d3ec.chunk.js"
   },
   {
     "revision": "7bf6756fcbf9a60a4bec",
@@ -52,7 +52,7 @@ self.__precacheManifest = [
     "url": "/react-feedback/static/media/check.2cc81c58.svg"
   },
   {
-    "revision": "ca3ab9a33f75a726f436ff572c7e6127",
+    "revision": "fc87f3a03f2352398b6ad4abb45f356b",
     "url": "/react-feedback/index.html"
   }
 ];
