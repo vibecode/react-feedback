@@ -144,7 +144,6 @@ const questions = (state = initialState, { type, payload }) => {
     case 'ANSWER':
       const parent = state.find(quest => quest.id === payload.parentId)
 
-      console.log(payload)
       const newParent = {
         ...parent,
         quests: parent.quests.map(quest => {

@@ -176,7 +176,6 @@ class App extends Component {
   }
 
   scrollToFocus = currentId => {
-    console.log(currentId)
     if (currentId === this.state.focusedId) return
 
     const el = this.refsDic[currentId].current
