@@ -254,7 +254,16 @@ class App extends Component {
             id="footer"
             ref={this.refsDic.footer}
           >
-            <SubmitButton>All done!</SubmitButton>
+            <SubmitButton
+              noHint
+              onClick={() =>
+                alert(
+                  'Thank you! All the data has been sent to Mark Zuckerberg :P'
+                )
+              }
+            >
+              All done!
+            </SubmitButton>
           </footer>
         </div>
         <ScrollPanel
