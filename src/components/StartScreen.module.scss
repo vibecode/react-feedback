@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.legend {
+  text-align: center;
+  font-weight: 200;
+}
