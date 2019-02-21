@@ -19,7 +19,6 @@
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.2);
-    font-weight: 200;
   }
 
   &:not(:focus) {
@@ -29,7 +28,7 @@
 
 .legend {
   font-size: 16px;
-  font-weight: 200;
+
   color: rgba(255, 255, 255, 0.795);
   margin-top: 0;
 }

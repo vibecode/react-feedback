@@ -27,8 +27,9 @@ class StartScreen extends PureComponent {
           <img src={logo} alt="logo" />
         </div>
         <h1 className={styles.legend}>
-          {`Thanks for shopping with Waves Inc. We'd love to know a bit more about
-          your experience with us.`}
+          {`Thanks for shopping with Waves Inc. `}
+          <br />
+          {`We'd love to know a bit more about your experience with us.`}
         </h1>
         <SubmitButton onClick={this.props.onSubmit} noHint>
           I want to give feedback!

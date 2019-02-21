@@ -7,8 +7,15 @@ import './index.scss'
 import 'normalize.css'
 import * as serviceWorker from './serviceWorker'
 import smoothscroll from 'smoothscroll-polyfill'
+import WebFont from 'webfontloader'
 
 smoothscroll.polyfill()
+
+WebFont.load({
+  google: {
+    families: ['Open+Sans:300,400']
+  }
+})
 
 const store = configureStore()
 const rootElement = document.getElementById('root')
