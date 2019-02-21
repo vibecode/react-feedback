@@ -1,7 +1,7 @@
 {
   "main.css": "/react-feedback/static/css/main.88d46c01.chunk.css",
-  "main.js": "/react-feedback/static/js/main.f62b936a.chunk.js",
-  "main.js.map": "/react-feedback/static/js/main.f62b936a.chunk.js.map",
+  "main.js": "/react-feedback/static/js/main.7e25c47b.chunk.js",
+  "main.js.map": "/react-feedback/static/js/main.7e25c47b.chunk.js.map",
   "static/css/1.61da0ae8.chunk.css": "/react-feedback/static/css/1.61da0ae8.chunk.css",
   "static/js/1.5c33d3ec.chunk.js": "/react-feedback/static/js/1.5c33d3ec.chunk.js",
   "static/js/1.5c33d3ec.chunk.js.map": "/react-feedback/static/js/1.5c33d3ec.chunk.js.map",
@@ -18,6 +18,6 @@
   "static/css/main.88d46c01.chunk.css.map": "/react-feedback/static/css/main.88d46c01.chunk.css.map",
   "static/css/1.61da0ae8.chunk.css.map": "/react-feedback/static/css/1.61da0ae8.chunk.css.map",
   "index.html": "/react-feedback/index.html",
-  "precache-manifest.f74140c001f0d1a09c6a04e93b6f6bb4.js": "/react-feedback/precache-manifest.f74140c001f0d1a09c6a04e93b6f6bb4.js",
+  "precache-manifest.54bbb14a2e7b52e8c828968c49522a6c.js": "/react-feedback/precache-manifest.54bbb14a2e7b52e8c828968c49522a6c.js",
   "service-worker.js": "/react-feedback/service-worker.js"
 }
