@@ -12,12 +12,14 @@ export class Question extends PureComponent {
   }
 
   renderQuest({ id, parentId, icon, type, title, total }, mapIdx) {
+    const focused = id === this.props.focusedId
+
     return (
       <section
         className={
-          id !== this.props.focusedId
-            ? styles.sub_question_section
-            : styles.sub_question_section_focused
+          focused
+            ? styles.sub_question_section_focused
+            : styles.sub_question_section
         }
         key={id}
         id={id}
@@ -63,6 +65,7 @@ export class Question extends PureComponent {
                     id={id}
                     parentId={parentId}
                     submitAnswer={this.submitAnswer}
+                    focused={focused}
                   />
                 )
               case 'EMAIL':
@@ -71,6 +74,7 @@ export class Question extends PureComponent {
                     id={id}
                     parentId={parentId}
                     submitAnswer={this.submitAnswer}
+                    focused={focused}
                   />
                 )
               default:

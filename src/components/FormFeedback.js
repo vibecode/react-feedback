@@ -9,6 +9,20 @@ export class FeedbackForm extends PureComponent {
     answer: ''
   }
 
+  componentDidMount() {
+    if (this.props.focused) {
+      this.input.focus()
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { focused } = this.props
+
+    if (focused && prevProps.focused !== focused) {
+      this.input.focus()
+    }
+  }
+
   onInputChange = ev => {
     const { value } = ev.target
 

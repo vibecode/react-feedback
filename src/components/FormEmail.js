@@ -10,6 +10,20 @@ export class FormEmail extends PureComponent {
     error: false
   }
 
+  componentDidMount() {
+    if (this.props.focused) {
+      this.input.focus()
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { focused } = this.props
+
+    if (focused && prevProps.focused !== focused) {
+      this.input.focus()
+    }
+  }
+
   onInputChange = ev => {
     const { value } = ev.target
 
