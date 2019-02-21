@@ -176,10 +176,29 @@ class App extends Component {
     })
   }
 
+  scrollToFocus(currentId) {
+    const el = this.refsDic[currentId].current
+
+    const centerWindow = document.documentElement.clientHeight / 2
+
+    const top = el.offsetTop - centerWindow + el.offsetHeight / 2
+
+    window.scrollTo({
+      left: 0,
+      top,
+      behavior: 'smooth'
+    })
+  }
+
   submitAnswer = answer => {
     this.props.answer(answer)
 
-    //TODO: must scroll based on clicked item: if no focus on clicked - set focus
+    if (answer.id !== this.state.focusedId) {
+      this.scrollToFocus(answer.id)
+
+      return
+    }
+
     setTimeout(() => this.scrollDownToNext(), 800)
   }
 
