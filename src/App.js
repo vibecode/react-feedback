@@ -105,16 +105,27 @@ class App extends Component {
         parent.quests.some(quest => quest.id === focusedId)
       )
 
-      const parentTop =
-        focusedParent && this[focusedParent.id].getBoundingClientRect().top
+      let showTop = false
 
-      //TODО: prevent unneseccery renders
-      this.setState({
-        focusedId: focusedId,
-        focusedParentId: focusedParent && focusedParent.id,
-        focusedMainTitle: focusedParent && focusedParent.title,
-        showTop: parentTop < 0
-      })
+      if (focusedParent) {
+        const focusedChildIdx = focusedParent.quests.findIndex(
+          quest => quest.id === focusedId
+        )
+
+        const parentTop = this[focusedParent.id].getBoundingClientRect().top
+
+        showTop = parentTop < 0 || focusedChildIdx > 0
+      }
+
+      //first condition prevents render if focused id hasn't changed
+      if (focusedId !== this.state.focusedId || showTop) {
+        this.setState({
+          focusedId: focusedId,
+          focusedParentId: focusedParent && focusedParent.id,
+          focusedMainTitle: focusedParent && focusedParent.title,
+          showTop
+        })
+      }
     } else {
       this.setState({
         focusedId: ''
