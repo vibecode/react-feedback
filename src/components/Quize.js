@@ -39,6 +39,7 @@ class App extends Component {
   componentDidMount() {
     this.setFocused()
     window.addEventListener('scroll', this.onScrollThrottled)
+    window.addEventListener('keypress', this.onEnterPress)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -77,6 +78,7 @@ class App extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.onScrollThrottled)
+    window.removeEventListener('keypress', this.onEnterPress)
   }
 
   setFocused() {
@@ -203,6 +205,16 @@ class App extends Component {
     setTimeout(() => this.scrollDownToNext(), 800)
   }
 
+  submitFinish = () => {
+    alert('Thank you! All the data has been sent to Mark Zuckerberg :P')
+  }
+
+  onEnterPress = ev => {
+    if (ev.key === 'Enter' && this.state.focusedId === 'footer') {
+      this.submitFinish()
+    }
+  }
+
   render() {
     const { questions, progress } = this.props
     const {
@@ -254,16 +266,7 @@ class App extends Component {
             id="footer"
             ref={this.refsDic.footer}
           >
-            <SubmitButton
-              noHint
-              onClick={() =>
-                alert(
-                  'Thank you! All the data has been sent to Mark Zuckerberg :P'
-                )
-              }
-            >
-              All done!
-            </SubmitButton>
+            <SubmitButton onClick={this.submitFinish}>All done!</SubmitButton>
           </footer>
         </div>
         <ScrollPanel
