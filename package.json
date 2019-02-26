@@ -11,6 +11,7 @@
     "prop-types": "^15.7.1",
     "ramda": "^0.26.1",
     "react": "^16.7.0",
+    "react-device-detect": "^1.6.2",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
     "react-textarea-autosize": "^7.1.0",

@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './SubmitButton.module.scss'
+import { isMobile } from 'react-device-detect'
 
 function SubmitButton({ children, onClick, noHint }) {
   return (
@@ -22,7 +23,7 @@ function SubmitButton({ children, onClick, noHint }) {
           </svg>
         </span>
       </button>
-      {!noHint && (
+      {!noHint && !isMobile && (
         <p className={styles.legend}>
           press <strong>ENTER</strong>
         </p>

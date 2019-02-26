@@ -53,6 +53,12 @@
   width: 60%;
 }
 
+@media (max-width: 366px) {
+  .progress {
+    margin-left: 16px;
+  }
+}
+
 .title {
   margin-top: 0;
   margin-bottom: 4px;

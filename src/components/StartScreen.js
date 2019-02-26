@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import SubmitButton from './SubmitButton'
 import styles from './StartScreen.module.scss'
 import logo from '../logo.png'
+import { isMobile } from 'react-device-detect'
 
 class StartScreen extends PureComponent {
   onEnterPress = ev => {
@@ -34,7 +35,7 @@ class StartScreen extends PureComponent {
         <SubmitButton onClick={this.props.onSubmit} noHint>
           I want to give feedback!
         </SubmitButton>
-        <p>press ENTER</p>
+        {isMobile || <p>press ENTER</p>}
       </section>
     )
   }

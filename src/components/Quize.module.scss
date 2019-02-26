@@ -26,3 +26,11 @@
   composes: footer;
   opacity: 1;
 }
+
+@media screen and (max-width: 876px) {
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}
