@@ -6,3 +6,5 @@ export default (state = 'WELCOME', { type }) => {
       return state
   }
 }
+
+export const getRoute = state => state.route

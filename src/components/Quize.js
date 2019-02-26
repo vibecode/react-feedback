@@ -5,9 +5,12 @@ import ScrollPanel from './ScrollPanel'
 import SubmitButton from './SubmitButton'
 import { connect } from 'react-redux'
 import { throttle } from 'lodash'
-import { getProgress } from '../reducers/questions'
 import { answer, start } from '../actions'
-import { getAllSubQuests } from '../reducers/questions'
+import {
+  getAllSubQuests,
+  getQuestions,
+  getProgress
+} from '../reducers/questions'
 import { CSSTransition } from 'react-transition-group'
 import styles from './Quize.module.scss'
 
@@ -282,8 +285,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  questions: state.questions,
-  //TODO: reselect
+  questions: getQuestions(state),
   subQuests: getAllSubQuests(state),
   progress: getProgress(state)
 })

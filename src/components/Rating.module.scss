@@ -43,7 +43,8 @@
 }
 
 .label {
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: 64px;
   width: 64px;
   position: absolute;

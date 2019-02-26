@@ -1,4 +1,5 @@
 import { v4 } from 'uuid'
+import { createSelector } from 'reselect'
 
 const initialState = [
   {
@@ -160,18 +161,23 @@ const questions = (state = initialState, { type, payload }) => {
   }
 }
 
-export const getAllSubQuests = state => {
-  return state.questions.reduce((acc, cur) => {
-    return [...acc, ...cur.quests]
-  }, [])
-}
+export const getQuestions = state => state.questions
 
-export const getProgress = state => {
-  const allSubQuests = getAllSubQuests(state)
+export const getAllSubQuests = createSelector(
+  getQuestions,
+  questions =>
+    questions.reduce((acc, cur) => {
+      return [...acc, ...cur.quests]
+    }, [])
+)
 
-  const answered = allSubQuests.filter(quest => quest.answered)
+export const getProgress = createSelector(
+  getAllSubQuests,
 
-  return (100 / allSubQuests.length) * answered.length
-}
+  allSubQuests => {
+    const answered = allSubQuests.filter(quest => quest.answered)
+    return (100 / allSubQuests.length) * answered.length
+  }
+)
 
 export default questions

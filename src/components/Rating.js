@@ -66,7 +66,7 @@ export class Rating extends PureComponent {
 
     return (
       <form className={styles.rating_form}>
-        {boxes.map(({ id, value, checked }) => (
+        {boxes.map(({ id, value, checked }, idx) => (
           <div
             key={id}
             className={checked ? styles.box_wrapper_active : styles.box_wrapper}

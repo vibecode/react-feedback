@@ -4,6 +4,7 @@ import StartScreen from './components/StartScreen'
 import { connect } from 'react-redux'
 import { start } from './actions'
 import { CSSTransition } from 'react-transition-group'
+import { getRoute } from './reducers/route'
 
 function App(props) {
   return (
@@ -32,7 +33,7 @@ function App(props) {
 }
 
 const mapStateToProps = state => ({
-  route: state.route
+  route: getRoute(state)
 })
 
 export default connect(
