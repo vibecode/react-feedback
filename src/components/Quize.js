@@ -82,6 +82,7 @@ class App extends Component {
   componentWillUnmount() {
     window.removeEventListener('scroll', this.onScrollThrottled)
     window.removeEventListener('keypress', this.onEnterPress)
+    clearTimeout(this._timeout)
   }
 
   setFocused() {
@@ -205,7 +206,7 @@ class App extends Component {
       return
     }
 
-    setTimeout(() => this.scrollDownToNext(), 800)
+    this._timeout = setTimeout(() => this.scrollDownToNext(), 800)
   }
 
   submitFinish = () => {
