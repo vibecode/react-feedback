@@ -1,7 +1,7 @@
 {
   "main.css": "/react-feedback/static/css/main.cac0a97d.chunk.css",
-  "main.js": "/react-feedback/static/js/main.fa71f9a9.chunk.js",
-  "main.js.map": "/react-feedback/static/js/main.fa71f9a9.chunk.js.map",
+  "main.js": "/react-feedback/static/js/main.a3fb37a2.chunk.js",
+  "main.js.map": "/react-feedback/static/js/main.a3fb37a2.chunk.js.map",
   "static/css/1.45827673.chunk.css": "/react-feedback/static/css/1.45827673.chunk.css",
   "static/js/1.410056d6.chunk.js": "/react-feedback/static/js/1.410056d6.chunk.js",
   "static/js/1.410056d6.chunk.js.map": "/react-feedback/static/js/1.410056d6.chunk.js.map",
@@ -15,9 +15,9 @@
   "static/media/lightning.8ce44aa2.svg": "/react-feedback/static/media/lightning.8ce44aa2.svg",
   "static/media/heart.0431f995.svg": "/react-feedback/static/media/heart.0431f995.svg",
   "static/media/check.2cc81c58.svg": "/react-feedback/static/media/check.2cc81c58.svg",
-  "static/css/main.cac0a97d.chunk.css.map": "/react-feedback/static/css/main.cac0a97d.chunk.css.map",
   "static/css/1.45827673.chunk.css.map": "/react-feedback/static/css/1.45827673.chunk.css.map",
+  "static/css/main.cac0a97d.chunk.css.map": "/react-feedback/static/css/main.cac0a97d.chunk.css.map",
   "index.html": "/react-feedback/index.html",
-  "precache-manifest.0469563a2432d4d2594b9a6fc6d78e32.js": "/react-feedback/precache-manifest.0469563a2432d4d2594b9a6fc6d78e32.js",
+  "precache-manifest.ca41c6e26f51c937574b475b7293b359.js": "/react-feedback/precache-manifest.ca41c6e26f51c937574b475b7293b359.js",
   "service-worker.js": "/react-feedback/service-worker.js"
 }
