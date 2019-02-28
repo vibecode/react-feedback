@@ -14,11 +14,11 @@ class StartScreen extends PureComponent {
   }
 
   componentDidMount() {
-    window.addEventListener('keypress', this.onEnterPress)
+    window.addEventListener('keydown', this.onEnterPress)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keypress', this.onEnterPress)
+    window.removeEventListener('keydown', this.onEnterPress)
   }
 
   render() {

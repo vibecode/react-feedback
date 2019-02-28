@@ -42,7 +42,7 @@ class App extends Component {
   componentDidMount() {
     this.setFocused()
     window.addEventListener('scroll', this.onScrollThrottled)
-    window.addEventListener('keypress', this.onEnterPress)
+    window.addEventListener('keydown', this.onEnterPress)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -81,7 +81,7 @@ class App extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.onScrollThrottled)
-    window.removeEventListener('keypress', this.onEnterPress)
+    window.removeEventListener('keydown', this.onEnterPress)
     clearTimeout(this._timeout)
   }
 

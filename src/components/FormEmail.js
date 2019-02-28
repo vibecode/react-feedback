@@ -78,7 +78,7 @@ export class FormEmail extends PureComponent {
           onChange={this.onInputChange}
           placeholder="Type your email here..."
           ref={tag => (this.input = tag)}
-          onKeyPress={this.onEnterPress}
+          onKeyDown={this.onEnterPress}
           onFocus={this.onFocus}
         />
 
